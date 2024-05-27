@@ -21,6 +21,11 @@ window.onload = function () {
             tile.addEventListener("drop", dragDrop);
             tile.addEventListener("dragend", dragEnd);
 
+            // Add touch event listeners
+            tile.addEventListener("touchstart", touchStart);
+            tile.addEventListener("touchmove", touchMove);
+            tile.addEventListener("touchend", touchEnd);
+
             document.getElementById("board").appendChild(tile);
         }
     }
@@ -57,6 +62,37 @@ function dragEnd() {
     }
 
 }
+function touchStart(e) {
+    e.preventDefault();
+    curTile = e.target;
+}
+
+function touchMove(e) {
+    e.preventDefault();
+    let touch = e.touches[0];
+    otherTile = document.elementFromPoint(touch.clientX, touch.clientY);
+}
+
+function touchEnd(e) {
+    if (curTile && otherTile && curTile !== otherTile) {
+        let currImg = curTile.src;
+        let otherImg = otherTile.src;
+
+        curTile.src = otherImg;
+        otherTile.src = currImg;
+
+        turns += 1;
+        document.getElementById("turns").innerText = turns;
+
+        // Check if the current order matches the correct order
+        if (checkOrder()) {
+            setTimeout(() => {
+                alert("Congratulations! You solved the puzzle.");
+            }, 100);
+        }
+    }
+}
+
 function checkOrder() {
     let currentOrder = [];
     for (let i = 0; i < rows; i++) {
