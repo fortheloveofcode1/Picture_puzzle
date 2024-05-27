@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+body {
+    align-items: center;
+    margin-top: 60px;
+    text-align: center;
+    color: blue;
+}
+
+img {
+    width: 30%;
+    height: 30%;
+
+}
+
+#board {
+    width: 360px;
+    height: 360px;
+    background-color: rgb(220, 224, 224);
+    border: 1px solid black;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#board img {
+    width: 118px;
+    height: 118px;
+    border: 1px solid rgb(131, 135, 214);
+
+}
